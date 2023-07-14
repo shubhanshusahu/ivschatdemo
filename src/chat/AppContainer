@@ -1,0 +1,25 @@
+
+
+const AppContainer = () => {
+  const { room } = useChatRoom({
+    regionOrUrl: SOCKET_URL,
+    tokenProvider: () => tokenProvider(ROOM_ID, ['SEND_MESSAGE']),
+  });
+
+  return (
+    <ChatRoomProvider value={room}>
+      <MyChatScreen />
+    </ChatRoomProvider>
+  );
+};
+
+// MyChatScreen
+
+const MyChatScreen = () => {
+  const room = useChatRoomContext();
+
+  const handleConnect = () => {
+    room.connect();
+  };
+  // ...
+};
